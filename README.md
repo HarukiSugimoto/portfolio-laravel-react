@@ -69,7 +69,7 @@ erDiagram
         string name "権限名"
     }
 
-    AuthorityDetails {
+    AuthorityDetail {
         int authority_id FK
         int detail_no "権限番号"
     }
@@ -80,6 +80,6 @@ erDiagram
     Blog ||--o{ BlogTag : ""
     Tag ||--o{ BlogTag : ""
     Tag ||--o{ WorkTag : ""
-    Authority ||--o{ AuthorityDetails : ""
+    Authority ||--o{ AuthorityDetail : ""
     Authority ||--o{ User : ""
 ```
