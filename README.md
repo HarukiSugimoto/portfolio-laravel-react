@@ -3,6 +3,7 @@
 erDiagram
     User {
         int id PK
+        int authority_id FK
         string name  "名前"
         string email "メールアドレス"
         string password "パスワード"
@@ -63,10 +64,22 @@ erDiagram
         int status "ステータス"
     }
 
+    Authority {
+        int id PK
+        string name "権限名"
+    }
+
+    AuthorityDetails {
+        int authority_id FK
+        int detail_no "権限番号"
+    }
+
     User ||--o{ Work: ""
     User ||--o{ Blog : ""
     Work ||--o{ WorkTag : ""
     Blog ||--o{ BlogTag : ""
     Tag ||--o{ BlogTag : ""
     Tag ||--o{ WorkTag : ""
+    Authority ||--o{ AuthorityDetails : ""
+    Authority ||--o{ User : ""
 ```
