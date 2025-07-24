@@ -28,6 +28,10 @@ class User extends Authenticatable
         'x_url',
     ];
 
+    protected $appends = [
+        'authority_detail_nos',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -59,5 +63,19 @@ class User extends Authenticatable
     public function works()
     {
         return $this->hasMany(Work::class);
+    }
+
+    public function getAuthorityDetailNosAttribute()
+    {
+        $list = [];
+        $authorityDetail = optional($this->authority)->authorityDetails
+        ?->pluck('detail_no', 'detail_no') ?? collect();
+        foreach (config('model.authorityDetailNo') as $key => $val) {
+            if ($authorityDetail->has($key)) {
+                $list = $key;
+            } 
+        }
+
+        return $list;
     }
 }
